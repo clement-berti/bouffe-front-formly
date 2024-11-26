@@ -1,0 +1,10 @@
+<label>{{ props.label }}</label>
+<mat-form-field>
+  <mat-select [formControl]="formControl" [multiple]="props['multiple']">
+    @for (option of (props.options ?? []); track option.value) {
+      <mat-option [value]="option.value">
+      {{option.label}}
+      </mat-option>
+    }
+  </mat-select>
+</mat-form-field>

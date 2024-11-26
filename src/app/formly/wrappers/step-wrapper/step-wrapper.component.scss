@@ -1,0 +1,13 @@
+h6 {
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.body {
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+  ::ng-deep label:not(.form-check-label) {
+    display: none;
+  }
+}

@@ -1,0 +1,14 @@
+<img src="/menu/custom/{{crepe.base}}.png" [alt]="crepe.base"/>
+@for (ingredient of INGREDIENTS.concat(SWEET_INGREDIENTS); track ingredient.value) {
+  <img [hidden]="!crepe.fillings.includes(ingredient.value)"
+       src="/menu/custom/{{ingredient.value}}.png"
+       [alt]="ingredient.label"/>
+}
+@for (salad of ASIDE_SALADS; track salad.value) {
+  <img [hidden]="crepe.aside !== salad.value"
+       src="/menu/custom/{{salad.value}}.png"
+       [alt]="salad.label"/>
+}
+@if (edit) {
+  <button (click)="onEdit.emit()" class="edit">Modifier</button>
+}

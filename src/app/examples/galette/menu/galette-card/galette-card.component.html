@@ -1,0 +1,7 @@
+<div class="item-header">
+  <h3>{{ galette.name }}</h3>
+  <span class="price">{{ galette.price | currency : 'EUR' : 'symbol' }}</span>
+</div>
+<img [src]="galette.picture" alt="{{galette.name}}"/>
+<p class="ingredients">{{ galette.ingredients.join(', ') }}</p>
+<sfo-counter [counter]="quantity ?? 0" (onChange)="onChange.emit($event)"></sfo-counter>

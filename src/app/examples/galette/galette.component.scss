@@ -1,0 +1,11 @@
+@use 'theme' as *;
+
+:host {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delivery-form {
+  display: block;
+  max-width: 600px;
+}

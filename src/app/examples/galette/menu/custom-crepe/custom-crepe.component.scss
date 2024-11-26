@@ -1,0 +1,46 @@
+@use 'theme' as *;
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.preview-box {
+  position: relative;
+  min-height: 280px;
+
+  .price {
+    position: absolute;
+    top: 0;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  sfo-crepe-preview {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    display: block;
+    margin: auto;
+  }
+
+  .actions {
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    button {
+      width: min-content;
+      margin: auto;
+      color: black;
+      border: none;
+      font-weight: 600;
+
+      &.btn-secondary {
+        background-color: $yellow;
+      }
+    }
+  }
+}

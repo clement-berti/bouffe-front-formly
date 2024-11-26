@@ -1,0 +1,45 @@
+@import '../../../../../scss/theme';
+
+:host {
+  width: 180px;
+  display: inline-block;
+  min-height: min-content;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.item-header {
+  z-index: 10;
+  position: relative;
+  padding: 5px 10px;
+
+  h3 {
+    color: #b62b36;
+    font-size: 18px;
+    margin-bottom: 0;
+    text-shadow: 0 0 5px white, 1px 1px 1px white;
+  }
+
+  .price {
+    font-weight: bold;
+  }
+}
+
+img {
+  margin-top: -65px;
+  width: 100%;
+  border-radius: 0 0 35px;
+}
+
+p.ingredients {
+  line-height: 1.2rem;
+  font-size: 14px;
+  padding: 10px 0;
+  margin-bottom: 5px;
+}
+
+sfo-counter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

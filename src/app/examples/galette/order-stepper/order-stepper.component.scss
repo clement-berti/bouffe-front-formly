@@ -1,0 +1,105 @@
+@import '../../../../scss/theme';
+
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  overflow: hidden;
+  height: 100vh;
+}
+
+nav {
+  width: 260px;
+  height: 100lvh;
+  background-color: #E3E3E3;
+
+  img.logo {
+    width: 60%;
+    max-width: 200px;
+    margin: 30px auto;
+    display: block;
+  }
+
+  ol {
+    list-style: none;
+    margin: 50px 0;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      button {
+        border: none;
+        background: none;
+        padding: 10px 0;
+        color: $mainColor;
+        font-weight: 600;
+
+        .step-icon {
+          border-radius: 50%;
+          width: 27px;
+          height: 27px;
+          color: black;
+          background: white;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 600;
+          font-size: 14px;
+          border: 2px solid $borderColor;
+          margin-right: 10px;
+        }
+
+        &.active .step-icon {
+          background-color: $mainColor;
+          color: white;
+          border-color: darken($mainColor, 10%);
+        }
+      }
+
+      .step-line {
+        pointer-events: none;
+        border-left-width: 2px;
+        border-left-style: solid;
+        flex: auto;
+        min-height: 20px;
+        margin: -6px 13px;
+        width: 1px;
+        border-left-color: $borderColor;
+      }
+    }
+
+    li:last-child .step-line {
+      display: none;
+    }
+  }
+}
+
+main {
+  width: calc(100% - 260px);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  background-color: $backgroundColor;
+
+  section {
+    flex: 3 1 auto;
+    padding: 30px;
+    overflow: auto;
+  }
+
+  footer {
+    align-self: flex-end;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    flex: 2 2 auto;
+    max-height: 150px;
+
+    button {
+      margin: 0 10px;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+::ng-deep mat-form-field {
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    &.mdc-text-field--invalid .mdc-line-ripple::before {
+      border-bottom: none;
+    }
+
+    .mdc-line-ripple::before {
+      border-bottom: none;
+    }
+  }
+
+  .mdc-text-field--outlined,
+  .mdc-text-field--no-label {
+    .mat-mdc-form-field-infix {
+      min-height: 30px;
+      padding: 5px 0;
+    }
+  }
+  .mat-mdc-form-field-subscript-wrapper, .mat-mdc-form-field-bottom-align::before {
+    display: none;
+  }
+}
