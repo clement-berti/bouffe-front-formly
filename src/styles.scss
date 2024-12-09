@@ -1,31 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
-@use 'scss/theme' as *;
+@use 'theme' as *;
+@use 'reboot' as *;
+@use 'typography' as *;
+@use 'button' as *;
 
 @include mat.core();
-
-@import 'bootstrap/scss/bootstrap';
-
 
 html {
   width: 100%;
   height: 100%;
 }
 
-button.btn {
-  border-radius: 3px;
-}
-
 h2 {
-  color: $mainColor;
-  display: flex;
-  font-size: 22px;
-  font-weight: 500;
-  align-items: center;
-  text-wrap-style: pretty;
-
   img {
     height: 24px;
     margin-right: 15px;
   }
+}
+
+:root {
+  --md-ref-typeface-brand: 'Open Sans';
+  --md-ref-typeface-plain: system-ui;
+  --mdc-filled-text-field-container-color: $backgroundColor;
+  --mat-form-field-hover-state-layer-opacity: 0;
 }

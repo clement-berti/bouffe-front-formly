@@ -65,9 +65,10 @@ export class CustomCrepeComponent implements OnChanges {
   }
 
   public add() {
-    this.onSave.emit(this.model);
+    this.onSave.emit({...this.model});
     this.model = this.generateNewGalette();
     this.editing = false;
+    this.form.reset();
   }
 
   public cancel() {

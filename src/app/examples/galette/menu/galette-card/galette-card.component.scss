@@ -1,4 +1,4 @@
-@import '../../../../../scss/theme';
+@use 'theme' as *;
 
 :host {
   width: 180px;
@@ -34,7 +34,7 @@ img {
 p.ingredients {
   line-height: 1.2rem;
   font-size: 14px;
-  padding: 10px 0;
+  padding-top: 10px;
   margin-bottom: 5px;
 }
 

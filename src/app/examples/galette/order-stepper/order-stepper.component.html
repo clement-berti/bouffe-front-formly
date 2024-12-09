@@ -24,6 +24,6 @@
     @if (selectedIndex > 0) {
       <button class="example-nav-button btn btn-outline-secondary" cdkStepperPrevious>{{buttonLabels[selectedIndex].previous}}</button>
     }
-    <button class="example-nav-button btn btn-primary" cdkStepperNext>{{buttonLabels[selectedIndex].next}}</button>
+    <button class="example-nav-button btn btn-primary" [disabled]="currentForm?.invalid" cdkStepperNext>{{buttonLabels[selectedIndex].next}}</button>
   </footer>
 </main>

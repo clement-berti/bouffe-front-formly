@@ -1,4 +1,4 @@
-@import '../../../../scss/theme';
+@use 'theme' as *;
 
 .items {
   padding: 10px 0 30px 0;
@@ -7,6 +7,10 @@
   grid-auto-columns: min-content;
   grid-gap: 20px;
   overflow: auto;
+}
+
+p {
+  margin-bottom: 10px;
 }
 
 sfo-custom-crepe {

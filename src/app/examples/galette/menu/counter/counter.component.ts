@@ -12,6 +12,9 @@ export class CounterComponent {
   @Output() onChange = new EventEmitter<number>();
 
   public onDecrease() {
+    if (this.counter === 0) {
+      return
+    }
     this.counter = Math.max(0, this.counter  - 1);
     this.onChange.emit(this.counter);
   }

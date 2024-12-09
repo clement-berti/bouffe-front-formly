@@ -1,4 +1,4 @@
-@import '../../../../scss/theme';
+@use 'theme' as *;
 
 :host {
   display: flex;
@@ -22,6 +22,7 @@ nav {
   ol {
     list-style: none;
     margin: 50px 0;
+    padding-left: 50px;
 
     li {
       display: flex;
@@ -34,6 +35,7 @@ nav {
         padding: 10px 0;
         color: $mainColor;
         font-weight: 600;
+        font-size: 18px;
 
         .step-icon {
           border-radius: 50%;

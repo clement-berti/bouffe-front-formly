@@ -36,7 +36,6 @@ export const customGaletteFields: FormlyFieldConfig[] = [
     key: 'base',
     type: 'radio',
     defaultValue: 'galette',
-    wrappers: ['step-wrapper'],
     props: {
       label: '1. Votre base',
       required: true,
@@ -48,14 +47,13 @@ export const customGaletteFields: FormlyFieldConfig[] = [
   },
   {
     key: 'fillings',
-    type: 'select-multiple',
-    wrappers: ['step-wrapper'],
+    type: 'select',
     props: {
       label: '2. Vos ingrédients',
       placeholder: 'Placeholder',
-      description: 'Description',
       required: true,
       multiple: true,
+      selectAllOption: 'Select All',
       options: [],
     },
     expressions: {
@@ -74,8 +72,7 @@ export const customGaletteFields: FormlyFieldConfig[] = [
   },
   {
     key: 'aside',
-    type: 'select-multiple',
-    wrappers: ['step-wrapper'],
+    type: 'select',
     props: {
       label: '3. Votre accompagnement',
       multiple: false,
@@ -87,10 +84,6 @@ export const customGaletteFields: FormlyFieldConfig[] = [
   },
   {
     key: 'price',
-    type: 'input',
-    props: {
-      type: 'hidden',
-    },
     hooks: {
       onInit: (field) => {
         field.form?.valueChanges.subscribe(() => {

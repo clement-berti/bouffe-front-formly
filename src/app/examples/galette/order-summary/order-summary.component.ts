@@ -1,15 +1,20 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {CrepePreviewComponent} from "../menu/crepe-preview/crepe-preview.component";
-import {CurrencyPipe} from "@angular/common";
+import {CurrencyPipe, JsonPipe} from "@angular/common";
 import {Order} from "../galette.component";
 import {Galette, galettes} from "../menu";
+import {MatSlideToggle} from "@angular/material/slide-toggle";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'sfo-order-summary',
   standalone: true,
   imports: [
     CrepePreviewComponent,
-    CurrencyPipe
+    CurrencyPipe,
+    JsonPipe,
+    MatSlideToggle,
+    MatIcon
   ],
   templateUrl: './order-summary.component.html',
   styleUrl: './order-summary.component.scss'

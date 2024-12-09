@@ -1,4 +1,5 @@
-<sfo-order-stepper [buttonLabels]="buttonLabels">
+<sfo-order-stepper [buttonLabels]="buttonLabels" [currentForm]="currentForm"
+                   (onStepSelected)="updateCurrentForm($event)">
   <cdk-step content="name" [stepControl]="formGroup1">
     <ng-template cdkStepLabel>Commande</ng-template>
     <sfo-menu [order]="order.items" (onChange)="updateOrder($event)"></sfo-menu>
@@ -11,6 +12,7 @@
   <cdk-step>
     <h2><img src="/icons/payment.png" alt="Payment icon"/>Paiement</h2>
     <ng-template cdkStepLabel>Paiement</ng-template>
+    <!--    <sfo-payment></sfo-payment>-->
   </cdk-step>
 </sfo-order-stepper>
 

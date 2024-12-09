@@ -6,11 +6,11 @@ import {CdkStep, CdkStepLabel} from "@angular/cdk/stepper";
 import {OrderStepperComponent} from "./order-stepper/order-stepper.component";
 import {FormlyModule} from "@ngx-formly/core";
 import {deliveryFields} from "./delivery.form";
-import {FormlyBootstrapModule} from "@ngx-formly/bootstrap";
 import {CustomGalette, Item, MenuComponent} from "./menu/menu.component";
 import {CrepePreviewComponent} from "./menu/crepe-preview/crepe-preview.component";
 import {OrderSummaryComponent} from "./order-summary/order-summary.component";
 import {Subscription} from "rxjs";
+import {FormlyMaterialModule} from "@ngx-formly/material";
 
 export interface Order {
   delivery?: {
@@ -42,7 +42,7 @@ export interface Order {
     OrderStepperComponent,
     CdkStepLabel,
     FormlyModule,
-    FormlyBootstrapModule,
+    FormlyMaterialModule,
     MenuComponent,
     JsonPipe,
     CurrencyPipe,
@@ -57,6 +57,8 @@ export class GaletteComponent implements OnInit, OnDestroy {
   public delivery: Order['delivery'] | {} = {};
   public formGroup1 = new FormGroup({});
   public deliveryForm = new FormGroup({});
+
+  public currentForm: FormGroup = this.formGroup1;
   public buttonLabels = {
     0: {previous: '', next: 'Indiquer le mode de livraison'},
     1: {previous: 'Revenir à la commande', next: 'Procéder au paiement'},
@@ -77,6 +79,14 @@ export class GaletteComponent implements OnInit, OnDestroy {
         }
       }
     })
+  }
+
+  public updateCurrentForm(index: number) {
+    const mapping: Record<number, FormGroup> = {
+      0: this.formGroup1,
+      1: this.deliveryForm
+    }
+    this.currentForm = mapping[index];
   }
 
   public updateOrder(items: Order['items']) {

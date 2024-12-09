@@ -8,6 +8,7 @@ export const deliveryFields: FormlyFieldConfig[] = [
       options: [
         { value: 'takeaway', label: 'Click & Collect (gratuit)' },
       ],
+      required: true
     },
   },
   {
@@ -20,14 +21,11 @@ export const deliveryFields: FormlyFieldConfig[] = [
       options: [
         { value: 'homeDelivery', label: 'A domicile dans toute l\'Île-de-France (5€)' },
       ],
+      required: true
     },
   },
   {
     key: 'address',
-    resetOnHide: false,
-    modelOptions: {
-      updateOn: 'blur'
-    },
     expressions: {
       hide: (field: FormlyFieldConfig) =>
         field.parent?.model?.deliveryMode !== 'homeDelivery',
@@ -36,7 +34,6 @@ export const deliveryFields: FormlyFieldConfig[] = [
       {
         key: 'fullname',
         type: 'input',
-        resetOnHide: false,
         props: {
           label: 'Prénom Nom',
           placeholder: 'Antoine Dupont',
@@ -46,7 +43,6 @@ export const deliveryFields: FormlyFieldConfig[] = [
       {
         key: 'street',
         type: 'input',
-        resetOnHide: false,
         props: {
           label: 'Adresse',
           placeholder: '3 impasse du bonheur',
@@ -54,13 +50,12 @@ export const deliveryFields: FormlyFieldConfig[] = [
         },
       },
       {
-        fieldGroupClassName: 'row',
+        fieldGroupClassName: 'display-flex',
         fieldGroup: [
           {
             key: 'postcode',
             type: 'input',
-            className: 'col-4',
-            resetOnHide: false,
+            className: 'flex-1',
             props: {
               label: 'Code Postal',
               placeholder: '92200',
@@ -76,8 +71,7 @@ export const deliveryFields: FormlyFieldConfig[] = [
           {
             key: 'city',
             type: 'input',
-            className: 'col-8',
-            resetOnHide: false,
+            className: 'flex-2',
             props: {
               label: 'Ville',
               placeholder: 'Neuilly-sur-Seine',
@@ -90,7 +84,6 @@ export const deliveryFields: FormlyFieldConfig[] = [
         key: 'hasComplementaryAddress',
         type: 'checkbox',
         defaultValue: false,
-        resetOnHide: false,
         props: {
           label: 'Ajouter un complément d\'adresse',
         },
@@ -98,7 +91,6 @@ export const deliveryFields: FormlyFieldConfig[] = [
       {
         key: 'complementaryAdress',
         type: 'textarea',
-        resetOnHide: false,
         props: {
           placeholder: 'Code d\'entrée V123',
           required: true,
