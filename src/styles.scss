@@ -3,9 +3,9 @@
 @use 'theme' as *;
 @use 'reboot' as *;
 @use 'typography' as *;
-@use 'button' as *;
-
-@include mat.core();
+@use 'layout' as *;
+@use 'components/button' as *;
+@use 'components/form' as *;
 
 html {
   width: 100%;
@@ -24,4 +24,15 @@ h2 {
   --md-ref-typeface-plain: system-ui;
   --mdc-filled-text-field-container-color: $backgroundColor;
   --mat-form-field-hover-state-layer-opacity: 0;
+  --mat-form-field-container-vertical-padding: 0;
+  --mat-form-field-container-height: 45px
+}
+.mat-accent {
+  --mdc-switch-selected-icon-color: black!important;
+  --mdc-switch-selected-hover-handle-color: #f6f6f6!important;
+  --mdc-switch-selected-focus-handle-color: #f6f6f6!important;
+  --mdc-switch-selected-pressed-handle-color: #f6f6f6!important;
+}
+.mdc-text-field {
+  padding: 0!important;
 }

@@ -1,0 +1,85 @@
+<aside>
+
+  @if (debug) {
+    <h3>
+      <mat-icon>bug_report</mat-icon>
+      Debug
+    </h3>
+    <pre>{{ order | json }}</pre>
+  } @else {
+    <h3><img src="/icons/shopping-basket.png" alt="Logo d'un panier de course"/> Votre commande</h3>
+
+    <div class="order-items">
+      @if (order?.items?.signatures?.length) {
+        <h5 class="category"><img src="/icons/crown.png" alt="Logo d'une couronne"/> Signature</h5>
+
+        <ul class="items">
+          @for (item of order!.items.signatures; track item.id) {
+            <li class="item">
+              <div class="info">
+                <span class="quantity">x{{ item.quantity }}</span>
+                <span class="name">{{ nameMapping.get(item.id)?.name }}</span>
+              </div>
+              <span class="price"
+                    matTooltip="{{item.quantity + ' x ' + (nameMapping.get(item.id)?.price | currency : 'EUR' : 'symbol')}}"
+              >{{ item.quantity * (nameMapping.get(item.id)?.price ?? 0) | currency : 'EUR' : 'symbol' }}</span>
+            </li>
+          }
+        </ul>
+      }
+
+      @if (order?.items?.custom?.length) {
+        <h5 class="category"><img src="/icons/measure.png" alt="Logo d'une règle"/> Sur Mesure</h5>
+
+        <ul class="items">
+          @for (item of order!.items.custom; track item.id) {
+            <li class="item">
+              <div class="info">
+                <span class="quantity">x{{ item.quantity }}</span>
+                <span class="name">{{ item.base === 'galette' ? 'Galette' : 'Crêpe' }}</span>
+                <span class="preview"><sfo-galette-preview [crepe]="item"></sfo-galette-preview></span>
+              </div>
+              <span class="price"
+                    matTooltip="{{item.quantity + ' x ' + (item.price | currency : 'EUR' : 'symbol')}}"
+              >{{ item.quantity * item.price! | currency : 'EUR' : 'symbol' }}</span>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+    <div class="sub-section">
+      <h5>Subtotal
+        <span class="price">{{ subtotal | currency : 'EUR' : 'symbol' }}</span></h5>
+    </div>
+
+    <div class="sub-section">
+      <h5>Livraison
+        <span class="price">{{ deliveryPrice === 0 ? '-' : deliveryPrice | currency : 'EUR' : 'symbol' }}</span>
+      </h5>
+
+      @if (order?.delivery?.deliveryMode) {
+        @if (order?.delivery?.deliveryMode === 'takeaway') {
+          <p class="delivery">
+            <img src="/icons/restaurant.png" alt="Restaurant logo"/>
+            <span>Au restaurant</span>
+          </p>
+        } @else if (order?.delivery?.deliveryMode === 'homeDelivery' && order?.delivery?.address) {
+          <p class="delivery">
+            <img src="/icons/delivery.png" alt="Delivery logo"/>
+            <span [hidden]="!order?.delivery?.address?.fullname">{{ order?.delivery?.address?.fullname }}</span>
+            <span [hidden]="!order?.delivery?.address?.street">{{ order?.delivery?.address?.street }},</span>
+            <span [hidden]="!order?.delivery?.address?.postcode">{{ order?.delivery?.address?.postcode }}
+              , {{ order?.delivery?.address?.city }}</span>
+          </p>
+        }
+      }
+    </div>
+
+    <div>
+      <h4>Total
+        <span class="price">{{ total | currency : 'EUR' : 'symbol' }}</span></h4>
+    </div>
+  }
+
+  <sfo-debug-switch [debug]="debug" (onChange)="debug = $event"></sfo-debug-switch>
+</aside>

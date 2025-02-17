@@ -1,0 +1,6 @@
+<input type="number" min="0" max="20" name="counter"
+       [value]="counter"
+       (keyup.enter)="onUpdate($event, { blur: true})"
+       (change)="onUpdate($event, { blur: false })"/>
+<button class="less" (click)="onDecrease()">‐</button>
+<button class="more" (click)="onIncrease()">+</button>

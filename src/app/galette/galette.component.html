@@ -1,0 +1,29 @@
+@if (orderConfirmed) {
+  <sfo-order-confirmation (resetOrder)="resetOrder()" [order]="order"></sfo-order-confirmation>
+} @else {
+  <sfo-order-stepper [buttonLabels]="buttonLabels" [currentForm]="currentForm"
+                     (selectedIndexChange)="updateCurrentForm($event)"
+                     (onStepSelected)="updateCurrentForm($event)">
+    <cdk-step content="name" [stepControl]="orderForm.controls.order">
+      <ng-template cdkStepLabel>Commande</ng-template>
+      <sfo-menu [order]="order.items" (onChange)="updateOrder($event)"></sfo-menu>
+    </cdk-step>
+
+    <cdk-step [stepControl]="orderForm.controls.delivery">
+      <ng-template cdkStepLabel>Livraison</ng-template>
+      <h2><img src="/icons/delivery.png" alt="Delivery icon"/>Mode de livraison</h2>
+      <formly-form class="delivery-form" [form]="orderForm.controls.delivery" [fields]="deliveryFields"
+                   [model]="delivery"/>
+    </cdk-step>
+
+    <cdk-step [stepControl]="orderForm.controls.payment">
+      <h2><img src="/icons/payment.png" alt="Payment icon"/>Paiement</h2>
+      <ng-template cdkStepLabel>Paiement</ng-template>
+      <sfo-payment [form]="orderForm.controls.payment"></sfo-payment>
+    </cdk-step>
+
+    <cdk-step></cdk-step>
+  </sfo-order-stepper>
+
+  <sfo-order-summary [order]="order"></sfo-order-summary>
+}

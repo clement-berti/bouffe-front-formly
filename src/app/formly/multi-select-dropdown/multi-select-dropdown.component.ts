@@ -11,7 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatSelect,
     MatFormField,
     MatOption,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './multi-select-dropdown.component.html',
   styleUrl: './multi-select-dropdown.component.scss'

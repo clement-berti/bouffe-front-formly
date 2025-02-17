@@ -1,0 +1,33 @@
+<nav>
+  <img class="logo" src="logo.png" alt="Logo de Bouffe Front Galette"/>
+  <ol>
+    @for (step of steps; track step; let i = $index) {
+      @if (i !== steps.length -1) {
+        <li>
+          <button
+            class="step"
+            [class.disabled]="step.stepControl.invalid"
+            [class.completed]="step.completed"
+            [class.active]="selectedIndex === i"
+            (click)="selectStepByIndex(i)">
+            <span class="step-icon">@if(step.completed || selectedIndex === i){<mat-icon>{{selectedIndex === i ? 'edit': 'check'}}</mat-icon>} @else {{{i + 1}}}</span>
+            <ng-container [ngTemplateOutlet]="step.stepLabel.template"></ng-container></button>
+          <span class="step-line"></span>
+        </li>
+      }
+    }
+  </ol>
+</nav>
+
+<main>
+  <section>
+    <ng-container [ngTemplateOutlet]="selected ? selected.content : null"></ng-container>
+  </section>
+
+  <footer class="example-step-navigation-bar">
+    @if (buttonLabels[selectedIndex].previous !== '') {
+      <button class="example-nav-button btn btn-outline-secondary" cdkStepperPrevious>{{buttonLabels[selectedIndex].previous}}</button>
+    }
+    <button class="example-nav-button btn btn-primary" [disabled]="!currentForm || currentForm.invalid" cdkStepperNext>{{buttonLabels[selectedIndex].next}}</button>
+  </footer>
+</main>

@@ -1,0 +1,19 @@
+section {
+  width: 100vw;
+  height: 100vh;
+  background-color: #e3e3e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.logo {
+  width: 120px;
+}
+
+p {
+  text-align: center;
+  line-height: 1.5rem;
+}

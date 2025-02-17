@@ -1,0 +1,37 @@
+<h2><img src="/icons/crown.png" alt="Icon de couronne"/>Nos Galettes signatures</h2>
+<p><b>Nos galettes sont accompagnées d'une bolée de cidre (brut / doux) ou d'eau pétillante / plate.</b></p>
+
+<div class="items">
+  @for (galette of galettes; track galette.id) {
+    <sfo-galette-card [galette]="galette"
+                      [quantity]="orderMapping[galette.id]?.quantity"
+                      (onChange)="updateQuantity(galette.id, $event)"></sfo-galette-card>
+  }
+</div>
+
+<h2><img src="/icons/crown.png" alt="Icon de couronne"/>Nos Crêpes signatures</h2>
+
+<div class="items">
+  @for (crepe of crepes; track crepe.id) {
+    <sfo-galette-card [galette]="crepe"
+                      [quantity]="orderMapping[crepe.id]?.quantity"
+                      (onChange)="updateQuantity(crepe.id, $event)"></sfo-galette-card>
+  }
+</div>
+
+<h2><img src="/icons/measure.png" alt="Icon de sur mesure"/>Vos Galettes & Crêpes sur mesure</h2>
+
+<div class="custom-crepes">
+  <sfo-custom-crepe [model]="customGaletteToEdit" (onSave)="saveCustomCrepe($event)"></sfo-custom-crepe>
+  @if (order.custom.length) {
+    <ul>
+      @for (custom of order.custom; track custom.id; let i = $index) {
+        <li>
+          <sfo-galette-preview [edit]="true" (onEdit)="edit(custom)" [crepe]="custom"/>
+          <sfo-counter (onChange)="updateCustomGalette(custom.id, $event)" [counter]="custom.quantity"></sfo-counter>
+        </li>
+      }
+    </ul>
+  }
+</div>
+

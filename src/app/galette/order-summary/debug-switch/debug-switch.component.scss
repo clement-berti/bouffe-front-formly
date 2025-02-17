@@ -1,0 +1,9 @@
+@use 'theme' as *;
+
+mat-slide-toggle {
+  ::ng-deep .mdc-switch__track::after, .mdc-switch:enabled:hover:not(:focus):not(:active) .mdc-switch__track::after {
+    background: $mainColor!important;
+
+    --mdc-switch-selected-hover-handle-color: lighten($mainColor, 20%)!important;
+  }
+}

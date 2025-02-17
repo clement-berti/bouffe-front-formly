@@ -1,0 +1,17 @@
+@use 'theme' as *;
+
+:host {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delivery-form {
+  max-width: 600px;
+
+  ::ng-deep .address-restaurant {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #e3e3e3;
+  }
+}

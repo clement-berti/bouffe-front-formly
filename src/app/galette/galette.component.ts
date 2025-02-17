@@ -1,0 +1,119 @@
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {CdkStep, CdkStepLabel} from "@angular/cdk/stepper";
+import {OrderStepperComponent} from "./order-stepper/order-stepper.component";
+import {FormlyModule} from "@ngx-formly/core";
+import {deliveryFields} from "./delivery.form";
+import {CustomGalette, Item, MenuComponent} from "./menu/menu.component";
+import {OrderSummaryComponent} from "./order-summary/order-summary.component";
+import {Subscription} from "rxjs";
+import {FormlyMaterialModule} from "@ngx-formly/material";
+import {PaymentFormComponent} from "./payment/payment.component";
+import {OrderConfirmationComponent} from "./order-confirmation/order-confirmation.component";
+
+export interface Order {
+  delivery?: {
+    deliveryMode: 'homeDelivery' | 'takeaway',
+    address?: {
+      fullname: string,
+      street: string,
+      postcode: string,
+      city: string
+    },
+    hasComplementaryAddress: boolean,
+    complementaryAddress?: string
+  },
+  items: { signatures: Item[], custom: CustomGalette[] }
+}
+
+@Component({
+  selector: 'sfo-galette',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    CdkStep,
+    OrderStepperComponent,
+    CdkStepLabel,
+    FormlyModule,
+    FormlyMaterialModule,
+    MenuComponent,
+    OrderSummaryComponent,
+    PaymentFormComponent,
+    OrderConfirmationComponent
+  ],
+  templateUrl: './galette.component.html',
+  styleUrl: './galette.component.scss'
+})
+export class GaletteComponent implements OnInit, OnDestroy {
+  public order: Order = {delivery: undefined, items: {signatures: [], custom: []}}
+  public delivery: Order['delivery'] | {} = {};
+  public orderConfirmed = false;
+  public orderForm = new FormGroup({
+    order: new FormGroup({
+      items: new FormGroup({
+        signatures: new FormGroup({}),
+        custom: new FormGroup({})
+      })
+    }, {updateOn: 'change'}),
+    delivery: new FormGroup({}),
+    payment: new FormGroup({})
+  });
+
+  public currentForm: FormGroup = this.orderForm.controls['order'];
+  public currentIndex: number = 0;
+  public buttonLabels = {
+    0: {previous: '', next: 'Indiquer le mode de livraison'},
+    1: {previous: 'Revenir à la commande', next: 'Procéder au paiement'},
+    2: {previous: 'Revenir au mode de livraison', next: 'Valider la commande'},
+    3: {previous: '', next: ''}
+  }
+
+  private deliverySubscription?: Subscription;
+
+  protected readonly deliveryFields = deliveryFields;
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+
+  public ngOnInit(): void {
+    this.deliverySubscription = this.orderForm.controls['delivery'].statusChanges.subscribe({
+      next: (status) => {
+        if (status === 'VALID') {
+          this.order = {...this.order, delivery: this.delivery as Order['delivery']};
+        } else {
+          this.order = {...this.order, delivery: undefined };
+        }
+        this.changeDetectorRef.detectChanges();
+      }
+    })
+  }
+
+  public updateCurrentForm(index: number) {
+    if (this.currentIndex === index) {
+      return;
+    }
+    if (index === 3) {
+      this.orderConfirmed = true;
+      return;
+    }
+    const mapping: Record<number, FormGroup> = {
+      0: this.orderForm.controls['order'],
+      1: this.orderForm.controls['delivery'],
+      2: this.orderForm.controls['payment'],
+    }
+    this.currentForm = mapping[index];
+    this.currentIndex = index;
+  }
+
+  public updateOrder(items: Order['items']) {
+    this.order = {...this.order, items};
+  }
+
+  public resetOrder() {
+    this.orderForm.reset();
+    this.orderConfirmed = false;
+  }
+
+  public ngOnDestroy() {
+    this.deliverySubscription?.unsubscribe();
+  }
+}

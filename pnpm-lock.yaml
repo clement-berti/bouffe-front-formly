@@ -45,8 +45,11 @@ importers:
         specifier: ^6.3.7
         version: 6.3.7(@angular/material@18.2.9(za4d5pflwrxhivechq45a7f67m))(@ngx-formly/core@6.3.7(@angular/forms@18.2.6(@angular/common@18.2.6(@angular/core@18.2.6(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.6(rxjs@7.8.1)(zone.js@0.14.10))(@angular/platform-browser@18.2.6(@angular/animations@18.2.6(@angular/core@18.2.6(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/common@18.2.6(@angular/core@18.2.6(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.6(rxjs@7.8.1)(zone.js@0.14.10)))(rxjs@7.8.1))(rxjs@7.8.1))
       '@stripe/stripe-js':
-        specifier: ^5.2.0
-        version: 5.2.0
+        specifier: ^4.10.0
+        version: 4.10.0
+      ngx-stripe:
+        specifier: ^18.1.0
+        version: 18.1.0(@angular/common@18.2.6(@angular/core@18.2.6(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.6(rxjs@7.8.1)(zone.js@0.14.10))(@stripe/stripe-js@4.10.0)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.1
@@ -1418,8 +1421,8 @@ packages:
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
-  '@stripe/stripe-js@5.2.0':
-    resolution: {integrity: sha512-2ZpEaezx3S0QPtnske175NDaLvUvaVKd4ePHpUN0QF/uV4BBBBRUy5BvQONDym+utbbW0QhSJoiRPnp4FS+4Vg==}
+  '@stripe/stripe-js@4.10.0':
+    resolution: {integrity: sha512-KrMOL+sH69htCIXCaZ4JluJ35bchuCCznyPyrbN8JXSGQfwBI1SuIEMZNwvy8L8ykj29t6sa5BAAiL7fNoLZ8A==}
     engines: {node: '>=12.16'}
 
   '@tufjs/canonical-json@2.0.0':
@@ -3023,6 +3026,13 @@ packages:
 
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
+
+  ngx-stripe@18.1.0:
+    resolution: {integrity: sha512-fNWmFaCWWzfsr8GU9Bmi6fwgHZHMI9UwpV5M0HMvkANnz9n7JWjP2Uck6zk0lXdu9q989aIbqj4awbLCZk/TUw==}
+    peerDependencies:
+      '@angular/common': '>=18.0.0 <19.0.0'
+      '@angular/core': '>=18.0.0 <19.0.0'
+      '@stripe/stripe-js': '>=4.0.0 <5.0.0'
 
   nice-napi@1.0.2:
     resolution: {integrity: sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==}
@@ -5772,7 +5782,7 @@ snapshots:
 
   '@socket.io/component-emitter@3.1.2': {}
 
-  '@stripe/stripe-js@5.2.0': {}
+  '@stripe/stripe-js@4.10.0': {}
 
   '@tufjs/canonical-json@2.0.0': {}
 
@@ -7546,6 +7556,13 @@ snapshots:
   negotiator@0.6.3: {}
 
   neo-async@2.6.2: {}
+
+  ngx-stripe@18.1.0(@angular/common@18.2.6(@angular/core@18.2.6(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.6(rxjs@7.8.1)(zone.js@0.14.10))(@stripe/stripe-js@4.10.0):
+    dependencies:
+      '@angular/common': 18.2.6(@angular/core@18.2.6(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1)
+      '@angular/core': 18.2.6(rxjs@7.8.1)(zone.js@0.14.10)
+      '@stripe/stripe-js': 4.10.0
+      tslib: 2.7.0
 
   nice-napi@1.0.2:
     dependencies:

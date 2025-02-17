@@ -1,0 +1,10 @@
+<section>
+  <img class="logo" src="logo.png" alt="Logo de Bouffe Front Galette"/>
+  <h3>Votre commande est confirmée !</h3>
+  <div>
+    <h2>Votre numéro de commande : N° {{orderNumber}}</h2>
+    <p>Elle sera disponible dans {{waitingTime}} minutes.<br/>
+      Merci d'avoir choisi "Bouffe Front Galette".</p>
+  </div>
+  <button class="btn btn-primary" (click)="resetOrder.emit()">Passer une nouvelle commande</button>
+</section>
