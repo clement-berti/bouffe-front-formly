@@ -2,13 +2,11 @@ import {
   Component,
   Input,
   OnChanges,
-  Renderer2,
   SimpleChanges
 } from '@angular/core';
 import {GalettePreviewComponent} from "../menu/galette-preview/galette-preview.component";
 import {CurrencyPipe, JsonPipe} from "@angular/common";
-import {Order} from "../galette.component";
-import {Galette} from "../menu";
+import {Galette, Order} from "../galette.interface";
 import {MatIcon} from "@angular/material/icon";
 import {DebugSwitchComponent} from "./debug-switch/debug-switch.component";
 import {MatTooltip} from "@angular/material/tooltip";

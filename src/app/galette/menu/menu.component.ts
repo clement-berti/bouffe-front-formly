@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {Crepe, Galette} from "../menu";
+import {Crepe, Galette} from "../galette.interface";
 import {GaletteCardComponent} from "./galette-card/galette-card.component";
 import {GaletteCreativeComponent} from "./galette-creative/galette-creative.component";
 import * as uuid from 'uuid';

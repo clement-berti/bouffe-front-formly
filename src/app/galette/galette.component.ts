@@ -1,30 +1,16 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {CdkStep, CdkStepLabel} from "@angular/cdk/stepper";
 import {OrderStepperComponent} from "./order-stepper/order-stepper.component";
 import {FormlyModule} from "@ngx-formly/core";
 import {deliveryFields} from "./delivery.form";
-import {CustomGalette, Item, MenuComponent} from "./menu/menu.component";
+import {MenuComponent} from "./menu/menu.component";
 import {OrderSummaryComponent} from "./order-summary/order-summary.component";
 import {Subscription} from "rxjs";
 import {FormlyMaterialModule} from "@ngx-formly/material";
 import {PaymentFormComponent} from "./payment/payment.component";
 import {OrderConfirmationComponent} from "./order-confirmation/order-confirmation.component";
-
-export interface Order {
-  delivery?: {
-    deliveryMode: 'homeDelivery' | 'takeaway',
-    address?: {
-      fullname: string,
-      street: string,
-      postcode: string,
-      city: string
-    },
-    hasComplementaryAddress: boolean,
-    complementaryAddress?: string
-  },
-  items: { signatures: Item[], custom: CustomGalette[] }
-}
+import {Order} from "./galette.interface";
 
 @Component({
   selector: 'sfo-galette',

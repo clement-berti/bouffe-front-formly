@@ -20,7 +20,9 @@ export const paymentFields: FormlyFieldConfig[] = [
       maxLength: 19,
       minLength: 16,
       pattern: '^[2-5][0-9 ]*$',
-      inputmode: "numeric",
+      attributes: {
+        inputmode: "numeric"
+      },
     },
     validators: {
       validation: ['creditCard'],

@@ -1,12 +1,10 @@
-import {Component, ElementRef, InjectionToken, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {FormlyFieldConfig, FormlyModule} from "@ngx-formly/core";
 import {PaymentIntent, PaymentIntentResult, StripeCardElementOptions, StripeElementsOptions} from '@stripe/stripe-js';
 import {
   injectStripe,
-  StripeCardComponent, StripeCardCvcComponent,
-  StripeCardExpiryComponent, StripeCardGroupDirective,
-  StripeCardNumberComponent,
+  StripeCardComponent,
   StripeService
 } from "ngx-stripe";
 import {HttpClient} from "@angular/common/http";
@@ -18,13 +16,7 @@ import {paymentFields} from "./payment.form";
   standalone: true,
   imports: [
     FormlyModule,
-    ReactiveFormsModule,
-    StripeCardComponent,
-    StripeCardNumberComponent,
-    StripeCardExpiryComponent,
-    StripeCardCvcComponent,
-    StripeCardGroupDirective,
-    StripeCardComponent,
+    ReactiveFormsModule
   ],
   providers: [
     StripeService
@@ -51,7 +43,7 @@ export class PaymentFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.stripeTest = this.fb.group({
-      name: ['Angular v10', [Validators.required]],
+      name: ['Angular', [Validators.required]],
       amount: [1001, [Validators.required, Validators.pattern(/d+/)]],
     });
   }

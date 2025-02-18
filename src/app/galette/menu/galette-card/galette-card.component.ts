@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CurrencyPipe} from "@angular/common";
-import {Galette} from "../../menu";
+import {Galette} from "../../galette.interface";
 import {CounterComponent} from "../counter/counter.component";
 
 @Component({

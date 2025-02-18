@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Order} from "../galette.component";
+import {Order} from "../galette.interface";
 
 @Component({
   selector: 'sfo-order-confirmation',

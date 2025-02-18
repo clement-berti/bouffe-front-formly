@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, Si
 import {FormlyModule} from "@ngx-formly/core";
 import {customGaletteFields, INGREDIENTS, SWEET_INGREDIENTS} from "./galette-creative.form";
 import {CustomGalette} from "../menu.component";
-import {CurrencyPipe, JsonPipe} from "@angular/common";
+import {CurrencyPipe} from "@angular/common";
 import {GalettePreviewComponent} from "../galette-preview/galette-preview.component";
 import {FormGroup} from "@angular/forms";
 
@@ -68,7 +68,11 @@ export class GaletteCreativeComponent implements OnChanges {
   }
 
   public add() {
-    this.onSave.emit({...this.model, id: this.editing ? this.model?.id : undefined});
+    let defaultValue = {}
+    if (!this.editing) {
+      defaultValue = { id: undefined, quantity: 1 }
+    }
+    this.onSave.emit({...this.model, ...defaultValue});
     this.editing = false;
     this.form.reset(this.generateNewGalette());
   }
