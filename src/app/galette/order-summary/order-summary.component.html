@@ -5,6 +5,7 @@
       <mat-icon>bug_report</mat-icon>
       Debug
     </h3>
+
     <pre>{{ order | json }}</pre>
   } @else {
     <h3><img src="/icons/shopping-basket.png" alt="Logo d'un panier de course"/> Votre commande</h3>
@@ -79,6 +80,12 @@
       <h4>Total
         <span class="price">{{ total | currency : 'EUR' : 'symbol' }}</span></h4>
     </div>
+  }
+
+  @if (order?.items?.signatures?.length || order?.items?.custom?.length) {
+    <button class="btn btn-outline-secondary btn-save" [class.saved]="saved" (click)="save()">
+      <mat-icon>{{ saved ? "done": "save" }}</mat-icon>
+    </button>
   }
 
   <sfo-debug-switch [debug]="debug" (onChange)="debug = $event"></sfo-debug-switch>

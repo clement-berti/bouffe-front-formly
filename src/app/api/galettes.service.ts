@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Galette} from "../galette/galette.interface";
-import {Observable, of} from "rxjs";
+import {Galette, Order} from "../galette/galette.interface";
+import {delay, Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,24 @@ export class GalettesService {
 
   public getAllDeliciousGalettes(): Observable<Galette[]> {
     return of(this.galettes);
+  }
+
+  public currentOrder(): Observable<Order | null> {
+    const order = localStorage.getItem('order');
+    if (order === null) {
+      return of(null);
+    }
+    return of(JSON.parse(order));
+  }
+
+  public saveOrder(order: Order): Observable<Order> {
+    localStorage.setItem('order', JSON.stringify(order));
+    return of(order);
+  }
+
+  public confirmOrder(order: Order): Observable<Order> {
+    localStorage.removeItem('order');
+    return of(order).pipe(delay(2000));
   }
 }
 

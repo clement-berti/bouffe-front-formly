@@ -24,4 +24,7 @@ export interface Order {
     complementaryAddress?: string
   },
   items: { signatures: Item[], custom: CustomGalette[] }
+  payment: {}
 }
+
+export const setDefaultOrder = () => ({delivery: undefined, items: {signatures: [], custom: []}, payment: {}})

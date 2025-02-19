@@ -10,7 +10,8 @@ import {Subscription} from "rxjs";
 import {FormlyMaterialModule} from "@ngx-formly/material";
 import {PaymentFormComponent} from "./payment/payment.component";
 import {OrderConfirmationComponent} from "./order-confirmation/order-confirmation.component";
-import {Order} from "./galette.interface";
+import {Order, setDefaultOrder} from "./galette.interface";
+import {GalettesService} from "../api/galettes.service";
 
 @Component({
   selector: 'sfo-galette',
@@ -31,7 +32,7 @@ import {Order} from "./galette.interface";
   styleUrl: './galette.component.scss'
 })
 export class GaletteComponent implements OnInit, OnDestroy {
-  public order: Order = {delivery: undefined, items: {signatures: [], custom: []}}
+  public order: Order = setDefaultOrder();
   public delivery: Order['delivery'] | {} = {};
   public orderConfirmed = false;
   public orderForm = new FormGroup({
@@ -58,11 +59,21 @@ export class GaletteComponent implements OnInit, OnDestroy {
 
   protected readonly deliveryFields = deliveryFields;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private galetteService: GalettesService
+  ) {
+    this.galetteService.currentOrder().subscribe((order: Order | null) => {
+      this.order = order ?? setDefaultOrder();
+    })
+  }
 
   public ngOnInit(): void {
     this.deliverySubscription = this.orderForm.controls['delivery'].statusChanges.subscribe({
       next: (status) => {
+        if (!this.order) {
+          return
+        }
         if (status === 'VALID') {
           this.order = {...this.order, delivery: this.delivery as Order['delivery']};
         } else {
@@ -96,6 +107,8 @@ export class GaletteComponent implements OnInit, OnDestroy {
 
   public resetOrder() {
     this.orderForm.reset();
+    this.order = setDefaultOrder();
+    this.delivery = {}
     this.orderConfirmed = false;
   }
 

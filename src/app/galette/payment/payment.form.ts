@@ -95,7 +95,7 @@ export const paymentFields: FormlyFieldConfig[] = [
         hooks: {
           onInit: (field) => {
             field.form?.get('cardNumber')?.valueChanges.subscribe(value => {
-              if (!field.props) {
+              if (!field.props || !value) {
                 return
               }
               const digitMapping: Record<number, number> = {

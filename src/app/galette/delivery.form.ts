@@ -126,7 +126,7 @@ export const deliveryFields: FormlyFieldConfig[] = [
         },
       },
       {
-        key: 'complementaryAdress',
+        key: 'complementaryAddress',
         type: 'textarea',
         props: {
           placeholder: 'Code d\'entrée V123',

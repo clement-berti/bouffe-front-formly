@@ -19,7 +19,7 @@
     <cdk-step [stepControl]="orderForm.controls.payment">
       <h2><img src="/icons/payment.png" alt="Payment icon"/>Paiement</h2>
       <ng-template cdkStepLabel>Paiement</ng-template>
-      <sfo-payment [form]="orderForm.controls.payment"></sfo-payment>
+      <sfo-payment [model]="order.payment" [form]="orderForm.controls.payment"></sfo-payment>
     </cdk-step>
 
     <cdk-step></cdk-step>

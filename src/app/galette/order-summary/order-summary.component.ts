@@ -34,6 +34,7 @@ export class OrderSummaryComponent implements OnChanges {
   public total = 0;
   public nameMapping = new Map<string, Galette>();
   public debug: boolean = false;
+  public saved: boolean = false;
 
   constructor(
     private galetteService: GalettesService,
@@ -49,6 +50,19 @@ export class OrderSummaryComponent implements OnChanges {
       this.deliveryPrice = changes['order'].currentValue?.delivery?.deliveryMode === 'homeDelivery' ? 5 : 0;
     }
     this.total = this.subtotal + this.deliveryPrice;
+  }
+
+  public save() {
+    if (this.saved || !this.order) {
+      return;
+    }
+
+    this.galetteService.saveOrder(this.order).subscribe(() => {
+      this.saved = true;
+      setTimeout(() => {
+        this.saved = false
+      }, 5000)
+    })
   }
 
   private computeSubtotal(items?: Order['items']): number {

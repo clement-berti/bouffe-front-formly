@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {FormlyFieldConfig, FormlyModule} from "@ngx-formly/core";
 import {PaymentIntent, PaymentIntentResult, StripeCardElementOptions, StripeElementsOptions} from '@stripe/stripe-js';
@@ -26,7 +26,7 @@ import {paymentFields} from "./payment.form";
 })
 export class PaymentFormComponent implements OnInit {
   @Input() form = new FormGroup({});
-  model: any = {};
+  @Input() model: any = {};
   fields: FormlyFieldConfig[] = paymentFields;
   options = {}
 
